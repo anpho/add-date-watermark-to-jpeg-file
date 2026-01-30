@@ -24,6 +24,7 @@
     <ProjectGuid>{4b8eed1c-7a5c-4c3d-8e5c-1e5e5e5e5e5e}</ProjectGuid>
     <RootNamespace>add-date-watermark-cpp20</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>add-date-watermark</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -166,7 +167,6 @@
   <ItemGroup>
     <ClInclude Include="include\exif_reader.h" />
     <ClInclude Include="include\image_processor.h" />
-    <ClInclude Include="include\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
