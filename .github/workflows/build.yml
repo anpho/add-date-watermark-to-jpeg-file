@@ -1,0 +1,37 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore add-date-watermark-cpp20.sln
+      working-directory: ./cpp20-version
+
+    - name: Build Solution
+      run: |
+        msbuild add-date-watermark-cpp20.sln /p:Configuration=Release /p:Platform=x64 /m
+      working-directory: ./cpp20-version
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: compiled-executable
+        path: ./cpp20-version/build/Release/add-date-watermark-cpp20.exe
+      if: success()
